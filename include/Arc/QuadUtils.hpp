@@ -161,18 +161,17 @@ namespace Arc
     void MakeGrid(VertexArray& vertices, const std::size_t start, const sf::Vector2u& gridsize, const sf::Vector2f& cellSize, const sf::Vector2f& position = sf::Vector2f(), const sf::Vector2f& padding = sf::Vector2f())
     {
         std::size_t idx = start;
-        sf::Vector2f pos = position;
+        float Y = position.y;
         for (unsigned int y = 0; y < gridsize.y; ++y)
         {
-            const float Y = static_cast<float>(y) * cellSize.y;
+            float X = position.x;
             for (unsigned int x = 0; x < gridsize.x; ++x)
             {
-                const float X = static_cast<float>(x) * cellSize.x;
-                MakeRect(vertices, idx, { pos, cellSize });
-                pos.y += Y + padding.y;
-                pos.x += X + padding.x;
+                MakeRect(vertices, idx, { sf::Vector2f(X, Y), cellSize });
                 ++idx;
+                X += cellSize.x + padding.x;
             }
+            Y += cellSize.y + padding.y;
         }
     }
 

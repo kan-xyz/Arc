@@ -20,7 +20,30 @@
 //
 //      3. This notice may not be removed or altered from any source distribution.
 
-#include "Mathematics.hpp"
-#include "PointUtils.hpp"
-#include "QuadUtils.hpp"
-#include "VertexArrayUtils.hpp"
+#include <type_traits>
+
+namespace Arc
+{
+
+    template <typename Type>
+    constexpr Type Pi()
+    {
+        static_assert(std::is_floating_point_v<Type>, "Arc mathematical functions need to be in floating point types");
+        return static_cast<Type>(3.14159265358979323846);
+    }
+
+    template <typename Type>
+    Type Radians(const Type degrees)
+    {
+        static_assert(std::is_floating_point_v<Type>, "Arc mathematical functions need to be in floating point types");
+        return (Pi<Type>() / static_cast<Type>(180)) * degrees;
+    }
+
+    template <typename Type>
+    Type Degrees(const Type radians)
+    {
+        static_assert(std::is_floating_point_v<Type>, "Arc mathematical functions need to be in floating point types");
+        return (static_cast<Type>(180) / Pi<Type>()) * radians;
+    }
+
+}

@@ -1,29 +1,27 @@
 #pragma once
 
-/*
-*   Arc - SFML Vertex Array Utilities
-*   Copyright (C) 2021 Kan
-*    
-*   This software is provided 'as-is', without any express or implied warranty.
-*   In no event will the authors be held liable for any damages arising from the use of this software.
-*
-*   Permission is granted to anyone to use this software for any purpose, including commercial applications,
-*   and to alter it and redistribute it freely, subject to the following restrictions:
-*
-*       1. The origin of this software must not be misrepresented;
-*          you must not claim that you wrote the original software.
-*          If you use this software in a product, an acknowledgment
-*          in the product documentation would be appreciated but
-*          is not required.
-*
-*       2. Altered source versions must be plainly marked as such,
-*          and must not be misrepresented as being the original software.
-*
-*       3. This notice may not be removed or altered from any source distribution.
-*/
+//  Arc - SFML Vertex Array Utilities
+//  Copyright (C) 2021 Kan
+//    
+//  This software is provided 'as-is', without any express or implied warranty.
+//  In no event will the authors be held liable for any damages arising from the use of this software.
+//
+//  Permission is granted to anyone to use this software for any purpose, including commercial applications,
+//  and to alter it and redistribute it freely, subject to the following restrictions:
+//
+//      1. The origin of this software must not be misrepresented;
+//         you must not claim that you wrote the original software.
+//         If you use this software in a product, an acknowledgment
+//         in the product documentation would be appreciated but
+//         is not required.
+//
+//      2. Altered source versions must be plainly marked as such,
+//         and must not be misrepresented as being the original software.
+//
+//      3. This notice may not be removed or altered from any source distribution.
 
+#include "Mathematics.hpp"
 #include "VertexArrayUtils.hpp"
-#include <SFML/Graphics/Rect.hpp>
 
 namespace Arc
 {
@@ -38,7 +36,7 @@ namespace Arc
     float GetQuadRotation(const VertexArray& vertices, const std::size_t id)
     {
         const sf::Vector2f dv = vertices[id * 4 + 1].position - vertices[id * 2 + 0].position;
-        return Util::Degrees(std::atan2(dv.y, dv.x));
+        return Degrees(std::atan2(dv.y, dv.x));
     }
 
     template <class VertexArray>
@@ -52,7 +50,7 @@ namespace Arc
     template <class VertexArray>
     void MoveQuad(VertexArray& vertices, const std::size_t id, const sf::Vector2f& translation)
     {
-        MoveVertexArray(vertices, id * 4, 4, translation)
+        MoveVertexArray(vertices, id * 4, 4, translation);
     }
 
     template <class VertexArray>
@@ -191,6 +189,12 @@ namespace Arc
     void SetQuadRotation(VertexArray& vertices, const std::size_t id, const float angle)
     {
         RotateQuad(vertices, id, angle - GetQuadRotation(vertices, id));
+    }
+
+    template <class VertexArray>
+    sf::FloatRect GetQuadBounds(const VertexArray& vertices, const std::size_t id)
+    {
+        return GetVertexArrayBounds(vertices, id * 4, 4);
     }
 
 }

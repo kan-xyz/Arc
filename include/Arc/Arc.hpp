@@ -21,6 +21,6 @@
 //      3. This notice may not be removed or altered from any source distribution.
 
 #include "Mathematics.hpp"
-#include "PointUtils.hpp"
 #include "QuadUtils.hpp"
+#include "TextureAtlas.hpp"
 #include "VertexArrayUtils.hpp"

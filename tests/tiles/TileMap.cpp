@@ -27,7 +27,6 @@ namespace Demo
         // the count of vertices is the third parameter
         Arc::SetVertexArrayColor(vertices, 0, 4 * 10 * 10, sf::Color::Magenta);
 
-        sf::Clock cl;
         while (window.isOpen())
         {
             sf::Event e;

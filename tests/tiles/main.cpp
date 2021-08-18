@@ -3,5 +3,4 @@
 int main()
 {
     Demo::TileMapDemo();
-    return 0;
 }

@@ -135,7 +135,7 @@ namespace Demo
         }
 
     private:
-        std::vector<sf::Vertex> m_vertices; // this is where we store the vertices for the particles
+        std::vector<sf::Vertex> m_vertices; // this is where we store the vertices for the particles.
                                             // in order to get the full benefit of batch rendering we need
                                             // to place everything in one vertex array
         std::vector<Particle> m_particleData;

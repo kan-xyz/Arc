@@ -143,17 +143,22 @@ namespace Arc
     }
 
     template <class VertexArray>
-    bool VertexArrayInRect(const VertexArray& vertices, const std::size_t start, const std::size_t count, const sf::FloatRect& rect)
+    void ResetVertexArray(VertexArray& vertices, const std::size_t start, const std::size_t count, const sf::Vertex& defaultVtx = sf::Vertex(sf::Vector2f(), sf::Color::Transparent, sf::Vector2f()))
     {
-        const std::size_t end = start + count;
+        const std::size_t count = start + count;
         for (std::size_t i = start; i < end; ++i)
         {
-            if (!rect.contains(vertices[i].position))
-            {
-                return false;
-            }
+            vertices[i] = defaultVtx;
         }
-        return true;
+    }
+
+    template <class VertexArray>
+    void SwapVerticesInArray(VertexArray& vertices, const std::size_t start1, const std::size_t start2, const std::size_t count)
+    {
+        for (std::size_t i = 0; i < count; ++i)
+        {
+            std::swap(vertices[start1 + i], vertices[start2 + i]);
+        }
     }
 
 }

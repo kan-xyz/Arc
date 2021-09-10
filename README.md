@@ -56,4 +56,4 @@ find in this library such as a random number generator and vector math.
 This library comes wth examples that can be built using the command prompt. Just set ARC_SFML_INCLUDE_DIR
 and ARC_SFML_LIB_DIR to the appropriate locations before building them.
 
-Please note that at the moment static building the examples only works for windows.
+Please note that at the moment, building the examples with static linking only works for windows.

@@ -46,7 +46,7 @@ namespace Arc
         }
 
         template <typename Type>
-        Type Range(const Type minVal, const Type maxVal)
+        Type RandRange(const Type minVal, const Type maxVal)
         {
             if constexpr (std::is_integral_v<Type>)
             {
@@ -66,19 +66,19 @@ namespace Arc
         }
 
         template <typename Type>
-        Type Offset(const Type center, const Type offset)
+        Type RandOffset(const Type center, const Type offset)
         {
             return Range(center - offset, center + offset);
         }
 
         template <typename Type>
-        Type Gaussian(const Type mean, const Type stddev)
+        Type RandGaussian(const Type mean, const Type stddev)
         {
             std::normal_distribution dist(mean, stddev);
             return dist(m_RNG);
         }
 
-        bool Bernoulli(const bool successProbability)
+        bool RandBernoulli(const bool successProbability)
         {
             std::bernoulli_distribution dist(successProbability);
             return dist(m_RNG);

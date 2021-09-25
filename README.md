@@ -50,10 +50,10 @@ int main()
 ```
 
 Even though the primary focus is vertex arrays, there are some more fratures that you can also
-find in this library such as a random number generator and vector math.
+find in this library such as vector math and lerping. I may also be including more features as well.  
 
 ## Building the Examples
-This library comes wth examples that can be built using the command prompt. Just set ARC_SFML_INCLUDE_DIR
+This library comes wth examples that can be built using the command prompt and cmake. Just set ARC_SFML_INCLUDE_DIR
 and ARC_SFML_LIB_DIR to the appropriate locations before building them.
 
 Please note that at the moment, building the examples with static linking only works for windows.

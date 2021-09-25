@@ -77,10 +77,9 @@ namespace Arc
     void ShearVertexArray(VertexArray& vertices, const std::size_t start, const std::size_t count, const sf::Vector2f& shearFactor, const sf::Vector2f& center = sf::Vector2f())
     {
         const std::size_t end = start + count;
-        const sf::Vector2f shear = { std::tan(Radians(shearFactor.x)), std::tan(Radians(shearFactor.y)) };
         for (std::size_t i = start; i < end; ++i)
         {
-            ShearPoint(vertices[i].position, shear, center);
+            ShearPoint(vertices[i].position, shearFactor, center);
         }
     }
 

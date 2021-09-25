@@ -154,7 +154,7 @@ namespace Arc
     }
 
     // NOTE: 
-    // since there is only one of two directions the cross product can go, this function will return a value instead of a vector.
+    // since there is only one of two directions the 2D cross product can go, this function will return a value instead of a vector.
     // just query the sign of the return value in order to get the direction
     template <typename Type>
     Type GetCrossProduct(const sf::Vector2<Type>& a, const sf::Vector2<Type>& b)

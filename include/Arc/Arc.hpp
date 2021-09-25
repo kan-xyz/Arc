@@ -22,6 +22,5 @@
 
 #include "Mathematics.hpp"
 #include "QuadUtils.hpp"
-#include "RNG.hpp"
 #include "TextureAtlas.hpp"
 #include "VertexArrayUtils.hpp"

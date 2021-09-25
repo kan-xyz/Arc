@@ -28,23 +28,26 @@ namespace Arc
     template <class VertexArray>
     sf::Vector2f GetQuadCenter(const VertexArray& vertices, const std::size_t id)
     {
-        const sf::Vector2f start = vertices[id * 4 + 0].position;
-        const sf::Vector2f end = vertices[id * 4 + 2].position;
+        const std::size_t idx = id * 4;
+        const sf::Vector2f start = vertices[idx + 0].position;
+        const sf::Vector2f end = vertices[idx + 2].position;
         return start + 0.5f * (end - start);
     }
 
     template <class VertexArray>
     float GetQuadRotation(const VertexArray& vertices, const std::size_t id)
     {
-        const sf::Vector2f dv = vertices[id * 4 + 1].position - vertices[id * 2 + 0].position;
+        const std::size_t idx = id * 4;
+        const sf::Vector2f dv = vertices[idx + 1].position - vertices[idx + 0].position;
         return Degrees(std::atan2(dv.y, dv.x));
     }
 
     template <class VertexArray>
     sf::Vector2f GetQuadSize(const VertexArray& vertices, const std::size_t id)
     {
-        const sf::Vector2f dw = vertices[id * 4 + 1].position - vertices[id * 4 + 0].position;
-        const sf::Vector2f dh = vertices[id * 4 + 2].position - vertices[id * 4 + 1].position;
+        const std::size_t idx = id * 4;
+        const sf::Vector2f dw = vertices[idx + 1].position - vertices[idx + 0].position;
+        const sf::Vector2f dh = vertices[idx + 2].position - vertices[idx + 1].position;
         return { std::sqrt(dw.x * dw.x + dw.y * dw.y), std::sqrt(dh.x * dh.x + dh.y * dh.y) };
     }
 
@@ -123,28 +126,31 @@ namespace Arc
     template <class VertexArray>
     void SetQuadTextureRect(VertexArray& vertices, const std::size_t id, const sf::FloatRect& textureRect)
     {
-        vertices[id * 4 + 0].texCoords = { textureRect.left, textureRect.top };
-        vertices[id * 4 + 1].texCoords = { textureRect.left + textureRect.width, textureRect.top };
-        vertices[id * 4 + 2].texCoords = { textureRect.left + textureRect.width, textureRect.top + textureRect.height };
-        vertices[id * 4 + 3].texCoords = { textureRect.left, textureRect.top + textureRect.height };
+        const std::size_t idx = id * 4;
+        vertices[idx + 0].texCoords = { textureRect.left, textureRect.top };
+        vertices[idx + 1].texCoords = { textureRect.left + textureRect.width, textureRect.top };
+        vertices[idx + 2].texCoords = { textureRect.left + textureRect.width, textureRect.top + textureRect.height };
+        vertices[idx + 3].texCoords = { textureRect.left, textureRect.top + textureRect.height };
     }
 
     template <class VertexArray>
     void MakeRect(VertexArray& vertices, const std::size_t id, const sf::FloatRect& rect)
     {
-        vertices[id * 4 + 0].position = { rect.left, rect.top };
-        vertices[id * 4 + 1].position = { rect.left + rect.width, rect.top };
-        vertices[id * 4 + 2].position = { rect.left + rect.width, rect.top + rect.height };
-        vertices[id * 4 + 3].position = { rect.left, rect.top + rect.height };
+        const std::size_t idx = id * 4;
+        vertices[idx + 0].position = { rect.left, rect.top };
+        vertices[idx + 1].position = { rect.left + rect.width, rect.top };
+        vertices[idx + 2].position = { rect.left + rect.width, rect.top + rect.height };
+        vertices[idx + 3].position = { rect.left, rect.top + rect.height };
     }
 
     template <class VertexArray>
     void MakeQuad(VertexArray& vertices, const std::size_t id, const sf::Vector2f& position, const sf::Vector2f& size)
     {
-        vertices[id * 4 + 0].position = position + 0.5f * sf::Vector2f(-size.x, -size.y);
-        vertices[id * 4 + 1].position = position + 0.5f * sf::Vector2f(size.x, -size.y);
-        vertices[id * 4 + 2].position = position + 0.5f * sf::Vector2f(size.x, size.y);
-        vertices[id * 4 + 3].position = position + 0.5f * sf::Vector2f(-size.x, size.y);
+        const std::size_t idx = id * 4;
+        vertices[idx + 0].position = position + 0.5f * sf::Vector2f(-size.x, -size.y);
+        vertices[idx + 1].position = position + 0.5f * sf::Vector2f(size.x, -size.y);
+        vertices[idx + 2].position = position + 0.5f * sf::Vector2f(size.x, size.y);
+        vertices[idx + 3].position = position + 0.5f * sf::Vector2f(-size.x, size.y);
     }
 
     template <class VertexArray>
@@ -177,10 +183,11 @@ namespace Arc
     template <class VertexArray>
     void MakeDiamond(VertexArray& vertices, const std::size_t id, const sf::Vector2f& position, const float width, const float height)
     {
-        vertices[id * 4 + 0].position = position + 0.5f * sf::Vector2f(0.0f, -height);
-        vertices[id * 4 + 1].position = position + 0.5f * sf::Vector2f(width, 0.0f);
-        vertices[id * 4 + 2].position = position + 0.5f * sf::Vector2f(0.0f, height);
-        vertices[id * 4 + 3].position = position + 0.5f * sf::Vector2f(-width, 0.0f);
+        const std::size_t idx = id * 4;
+        vertices[idx + 0].position = position + 0.5f * sf::Vector2f(0.0f, -height);
+        vertices[idx + 1].position = position + 0.5f * sf::Vector2f(width, 0.0f);
+        vertices[idx + 2].position = position + 0.5f * sf::Vector2f(0.0f, height);
+        vertices[idx + 3].position = position + 0.5f * sf::Vector2f(-width, 0.0f);
     }
 
     template <class VertexArray>

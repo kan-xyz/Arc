@@ -9,8 +9,9 @@ set(CMAKE_STANDARD_REQUIRED TRUE)
 # -------------------------------------------------------------------------------------------------------------------
 #
 
-set(ARC_SFML_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/../../libraries/SFML-2.5.1/include)
-set(ARC_SFML_LIB_DIR ${CMAKE_SOURCE_DIR}/../../libraries/SFML-2.5.1/lib)
+set(ARC_SFML_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/../../libraries/SFML-2.5.1/include" CACHE STRING "Location of the SFML include directory")
+set(ARC_SFML_LIB_DIR "${CMAKE_SOURCE_DIR}/../../libraries/SFML-2.5.1/lib" CACHE STRING "Location of the already built SFML libraries along with the dependencies")
+set(ARC_STATIC_BUILD TRUE CACHE BOOL "On for static build and Off for dynamic build")
 
 set(ARC_LIB_PREFIX)
 if (MINGW)
@@ -28,8 +29,6 @@ set(ARC_BUILD_EXT)
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(ARC_BUILD_EXT -d)
 endif ()
-
-set(ARC_STATIC_BUILD TRUE)
 
 #
 # -------------------------------------------------------------------------------------------------------------------
@@ -64,11 +63,11 @@ macro(ARC_LINK_SFML TargetName)
     else ()
         target_link_libraries(
             ${TargetName}
-            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-graphics${ARC_BUILD_EXT}.${ARC_LIB_EXT}
-            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-window${ARC_BUILD_EXT}.${ARC_LIB_EXT}
-            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-audio${ARC_BUILD_EXT}.${ARC_LIB_EXT}
-            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-network${ARC_BUILD_EXT}.${ARC_LIB_EXT}
-            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-system${ARC_BUILD_EXT}.${ARC_LIB_EXT}
+            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-graphics-s${ARC_BUILD_EXT}.${ARC_LIB_EXT}
+            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-window-s${ARC_BUILD_EXT}.${ARC_LIB_EXT}
+            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-audio-s${ARC_BUILD_EXT}.${ARC_LIB_EXT}
+            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-network-s${ARC_BUILD_EXT}.${ARC_LIB_EXT}
+            ${ARC_SFML_LIB_DIR}/${ARC_LIB_PREFIX}sfml-system-s${ARC_BUILD_EXT}.${ARC_LIB_EXT}
         )
     endif ()
 endmacro()

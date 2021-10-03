@@ -1,8 +1,8 @@
 # Arc
 
-Arc is a small utility library for manipulating vertex arrays.  
+Arc is a header only utility library for SFML whose main focus is on vertex arrays.  
 
-This is a header only templated library which means that all you have to do is include  
+This is a fully templated library which means that all you have to do is include  
 this in your project and you can use it right away.
 
 **Note:**  
@@ -49,8 +49,8 @@ int main()
 }
 ```
 
-Even though the primary focus is vertex arrays, there are some more fratures that you can also
-find in this library such as vector math and lerping. I may also be including more features as well.  
+Even though the primary focus is vertex arrays, there are some more features that you can also
+find in this library such as vector math and angle conversions. I may also be including more features as well.  
 
 ## Building the Examples
 This library comes wth examples that can be built using the command prompt and cmake. Just set ARC_SFML_INCLUDE_DIR

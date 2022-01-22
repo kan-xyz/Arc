@@ -6,6 +6,7 @@
 - resource manager class
 - new examples
 - new functions
+- additions to Texture atlas class
 
 ## bug fixes
 - Arc::CosineLerp was using the wrong equation

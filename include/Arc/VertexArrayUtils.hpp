@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																											  //
 //  Arc - SFML Vertex Array Utilities																		  //
-//  Copyright (C) 2021 Kan																					  //
+//  Copyright (C) 2021 - 2022 Kan																					  //
 //    																										  //
 //  This software is provided 'as-is', without any express or implied warranty.								  //
 //  In no event will the authors be held liable for any damages arising from the use of this software.		  //

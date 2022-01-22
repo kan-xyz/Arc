@@ -1,59 +1,65 @@
-# Arc
+# Arc Library 
+Arc is a templated header only utility library for SFML. Since it is a header only library all you need  
+to do is just include the library into your project and you can use it right away.  
 
-Arc is a header only utility library for SFML whose main focus is on vertex arrays.  
+Please note that this library uses C++ 17 features which means that C++ 17 and above is required.  
 
-This is a fully templated library which means that all you have to do is include  
-this in your project and you can use it right away.
+## Features
+Arc's current features:
+- Vertex Array Utilities: Functions designed for manipulating SFML vertex arrays.  
+- Mathematics: Common math functions for use in SFML.  
+- Random: A random number generator which is a thin wrapper over C++ random.  
+- Resource Manager: A class that handles management of SFML resources such as `sf::Texture`.  
+- Texture Atlas: A class to render other textures onto one large texture. It is used to place multiple textures under one vertex array.  
 
-**Note:**  
-This library makes use of C++17 features so that means you have to use  
-C++17 or higher.
-
-## Sample Code
+## Example Code
+The code below draws a 3x3 grid with the center quad rotating about its center.  
 ```
-#include <Arc/Arc.hpp> // include all of Arc's features
+#include "Arc/Arc.hpp" // include all of Arc's features
 #include <SFML/Graphics.hpp>
 
-int main()
-{
-    sf::RenderWindow window({ 800, 600 }, "Demo");
-    window.setFramerateLimit(60);
-    
-    sf::VertexArray vertices;
-    vertices.setPrimitiveType(sf::Quads);
-    vertices.resize(4);
-    
-    Arc::MakeQuad(vertices, 0, { 400.0f, 300.0f }, { 200.0f, 200.0f });
-    
-    sf::Clock clock;
-    while (window.isOpen())
-    {
-        sf::Event evt;
-        while (window.pollEvent(evt))
-        {
-            if (evt.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-        }
-        
-        const float dt = clock.restart.asSeconds();
-        Arc::RotateQuad(vertices, 0, dt * 180.0f); // rotate the quad 180 degrees per second
-        
-        window.clear();
-        window.draw(vertices);
-        window.display();
-    }
-    
-    return 0;
+int main() {
+
+	sf::RenderWindow window({ 800, 600 }, "Intro Demo");
+	window.setFramerateLimit(60);
+
+	sf::VertexArray vertices;
+	vertices.resize(3 * 3 * 4); // this makes a 3x3 grid of quads (4 vertices)
+	vertices.setPrimitiveType(sf::Quads);
+
+	// this creates a 3x3 grid with a cell size of 64x64 positioned at (120, 120) and a padding of (32, 32)
+	Arc::MakeGrid(vertices, 0, { 3, 3 }, { 64.0f, 64.0f }, { 120.0f, 120.0f }, { 32.0f, 32.0f });
+	Arc::SetVertexArrayColor(vertices, 0, vertices.getVertexCount(), sf::Color::Blue);
+
+	sf::Clock cl;
+
+	while (window.isOpen()) {
+
+		sf::Event evt;
+		while (window.pollEvent(evt)) {
+			if (evt.type == sf::Event::Closed) { window.close(); }
+		}
+
+		// this will rotate the fourth quad in the grid (starting with index 0) by 60 degrees per second
+		Arc::RotateQuad(vertices, 4, cl.restart().asSeconds() * 180.0f);
+
+		window.clear();
+		window.draw(vertices);
+		window.display();
+
+	}
+	return 0;
 }
 ```
 
-Even though the primary focus is vertex arrays, there are some more features that you can also
-find in this library such as vector math and angle conversions. I may also be including more features as well.  
-
 ## Building the Examples
-This library comes wth examples that can be built using the command prompt and cmake. Just set ARC_SFML_INCLUDE_DIR
-and ARC_SFML_LIB_DIR to the appropriate locations before building them.
+There are two ways to view the examples. One is to build them using cmake and the other is to just add the source files to your project  
+as is demonstrated below
+```
+#include "example_list.hpp" // this is where you can find all the available demos
 
-Please note that at the moment, building the examples with static linking only works for windows.
+int main() {
+	ArcDemo::ExampleName(); // all examples are in the ArcDemo namespace
+	return 0;
+}
+```

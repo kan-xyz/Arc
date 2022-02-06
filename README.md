@@ -41,7 +41,7 @@ int main() {
 		}
 
 		// this will rotate the fourth quad in the grid (starting with index 0) by 60 degrees per second
-		Arc::RotateQuad(vertices, 4, cl.restart().asSeconds() * 180.0f);
+		Arc::RotateQuad(vertices, 4, cl.restart().asSeconds() * 60.0f);
 
 		window.clear();
 		window.draw(vertices);
